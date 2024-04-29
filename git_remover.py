@@ -1,6 +1,8 @@
 
 import os
 import shutil
+import time
+
 from rich import print
 import subprocess
 def remove_git(file):
@@ -13,21 +15,23 @@ def remove_git(file):
             else:
                 parent_path = git_path
             if os.path.exists(git_path):
-                print(git_path, 'g')
-                print(parent_path, 'p')
-                # shutil.rmtree(parent_path)
-                execute = subprocess.call(
-                    [f'rm','-rf',parent_path])
-                # try:
-
-                # except Exception as e:
-                #     print(e)
+                print(git_path)
+                # print(parent_path, 'p')
+                try:
+                    execute = subprocess.call(
+                    [f'cmd','/c',"rmdir","/S","/Q",parent_path])
+                except Exception as e:
+                    print(e)
+                    time.sleep(15)
                 if not os.path.exists(git_path):
-                    print(f"{git_path} removed")
+                    print(f"[red]{git_path} removed")
                 # return f"{git_path} removed"
 
             else:
                 print(f"{git_path} folder not found")
+
+    input('Press double enter')
+    input('Press Enter to close window!!!')
     return f"Scanning ended successfully!!"
 
     #

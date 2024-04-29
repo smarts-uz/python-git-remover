@@ -9,7 +9,7 @@ def remover():
 
 
 
-@remover.command(help='Input .git foler path')
+@remover.command(help='Input .git folder path')
 @click.option('--path')
 def remove(path):
     remove_git(path)

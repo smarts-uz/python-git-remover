@@ -5,18 +5,25 @@ import time
 
 from rich import print
 import subprocess
+from dotenv import load_dotenv
+load_dotenv()
+rep = os.getenv('folder')
 def remove_git(file):
     with open(file, 'r') as f:
+        print(rep)
+        print(rep)
+        time.sleep(2)
         lines = f.readlines()
         for i,line in enumerate(lines):
             git_path = line.strip()
-            if '\\.git' in git_path :
-                parent_path = git_path.replace('\\.git', '')
+            if rep in git_path :
+                parent_path = git_path.replace(f"\\{rep}", '')
+                print('Replace: ', parent_path)
             else:
                 parent_path = git_path
+
             if os.path.exists(git_path):
                 print(git_path)
-                # print(parent_path, 'p')
                 try:
                     execute = subprocess.call(
                     [f'cmd','/c',"rmdir","/S","/Q",parent_path])
@@ -46,6 +53,6 @@ def remove_git(file):
 
 
 
-# remove_git('d:/text.txt')
+# remove_git('2.txt')
 
 # rmdir "c:\Users\Administrator\Desktop\test\supabase_examples - Copy" /s /q
